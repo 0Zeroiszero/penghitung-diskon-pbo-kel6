@@ -1,39 +1,36 @@
 # AGENTS.md - Kalkulator Diskon
 
-Aplikasi desktop Java Swing untuk menghitung harga akhir setelah diskon 10%, 20%, 30%, atau 50% dari harga barang. Tanpa database. Kontributor masih pemula: utamakan kode sederhana, bukan arsitektur berlapis-lapis.
+Aplikasi desktop JavaFX untuk menghitung harga akhir setelah diskon 10%, 20%, 30%, atau 50% dari harga barang. Tanpa database. Layout dua kolom: form di kiri, hasil di kanan. Kontributor masih pemula: utamakan kode sederhana dan mudah dibaca.
 
 ## Menjalankan
 
-- Repo tidak menyertakan Maven wrapper dan `mvn` belum tentu tersedia. Cara utama: buka proyek di IntelliJ IDEA, lalu jalankan `src/main/java/com/pbo/Main.java`.
-- Build saat ini membutuhkan JDK 27. Project SDK ada di `.idea/misc.xml`; `pom.xml` memakai `target` 27.
-- Verifikasi cepat tanpa Maven (PowerShell):
-  ```powershell
-  javac -d target/classes (Get-ChildItem -Recurse src/main/java -Filter *.java).FullName
-  java -cp target/classes com.pbo.Main
-  ```
-- Tidak ada test framework atau CI. Uji manual dengan harga `100000`: diskon 10/20/30/50 harus menghasilkan `90000`, `80000`, `70000`, `50000`.
+- JDK 27 + JavaFX 27.0.1 (lihat `pom.xml`).
+- `mvn javafx:run` untuk menjalankan aplikasi; `mvn -q compile` untuk cek kompilasi.
+- Jika `mvn` tidak ada di PATH, gunakan Maven bawaan IntelliJ (Maven tool window) atau pasang Maven. Repo tidak punya Maven wrapper.
+- Tidak ada test framework/CI. Uji manual harga `100000`: diskon 10/20/30/50 harus menghasilkan `90000`, `80000`, `70000`, `50000`; cek juga input kosong, `0`, dan negatif.
 
 ## Struktur MVC
 
 Semua kode di `src/main/java/com/pbo/`:
 
-- `Main.java` - entrypoint. Isinya hanya `public static void main(String[] args)` yang memanggil `SwingUtilities.invokeLater`; jangan pakai `IO.println` atau `static void main()`.
-- `model/` - logika diskon murni, tanpa `import javax.swing`. Contoh: `DiscountCalculator`.
-- `view/` - komponen dan layout Swing, tanpa rumus. Contoh: `CalculatorFrame`.
-- `controller/` - `ActionListener`, validasi input, panggil model, update view. Contoh: `CalculatorController`.
+- `Main.java` - entrypoint JavaFX (`Application`), memuat `/styles.css`, ukuran scene 880x610.
+- `model/` - logika diskon murni, tanpa import JavaFX. `DiscountCalculator.hitungHargaAkhir(harga, persen)`.
+- `view/CalculatorView.java` - membangun layout JavaFX; form kiri, kartu hasil kanan. Tidak berisi rumus.
+- `controller/CalculatorController.java` - event handler tombol/Enter, validasi, panggil model, update view.
 
 Rumus hanya di model. View tidak menghitung; controller tidak membuat komponen UI.
 
-## Perilaku
+## UI
 
-- Satu window: input harga, pilihan diskon tetap 10/20/30/50 (combo box atau radio), tombol Hitung, label harga akhir.
-- Harga wajib angka > 0. Input kosong, bukan angka, atau negatif -> `JOptionPane` error, jangan crash.
-- Hasil dalam Rupiah tanpa desimal (`NumberFormat` locale `id-ID`). Cukup `double`; tidak perlu `BigDecimal`.
-- Teks UI dalam Bahasa Indonesia.
-- Hanya empat diskon tetap. Jangan tambah diskon custom, riwayat, login, export, atau penyimpanan file.
+- Semua warna, font, radius, shadow, dan state hover ada di `src/main/resources/styles.css`. Jangan hardcode warna di Java.
+- Palet: krem `#FBF8F2`/`#F1EBE0`, navy `#1E3A5F`, emas `#B7791F`, teks `#1F2937`, muted `#6B7280`.
+- Form: input harga, chip diskon 10/20/30/50, tombol Hitung. Hasil di kartu kanan: harga akhir, detail diskon, hemat.
+- Error ditampilkan inline di bawah input; jangan pakai dialog modal.
+- Teks UI Bahasa Indonesia. Format Rupiah tanpa desimal (`Locale` `id-ID`).
 
 ## Batasan
 
-- Hanya Java Swing + JDK. Jangan tambah dependency ke `pom.xml`, dan jangan pakai database, file, atau network.
-- Jangan commit `.agents/`, `.opencode/`, atau `.windsurf/`; itu skill tooling, bukan kode proyek. Untuk ponytail, commit `skills-lock.json` dan restore dengan `npx skills experimental_install`.
-- Sebelum commit/PR, jalankan aplikasi dan pastikan keempat diskon benar.
+- Hanya JavaFX + JDK. Jangan tambah dependency selain JavaFX tanpa alasan kuat.
+- Hanya empat diskon tetap. Jangan tambah diskon custom, riwayat, login, export, database, file, atau network.
+- Jangan commit `.agents/`, `.opencode/`, atau `.windsurf/`; itu skill tooling. Untuk ponytail, commit `skills-lock.json` dan restore dengan `npx skills experimental_install`.
+- Sebelum commit/PR, jalankan `mvn javafx:run` dan pastikan keempat diskon benar.

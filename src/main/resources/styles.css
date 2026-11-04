@@ -1,0 +1,182 @@
+.app-root {
+    -fx-font-family: "Segoe UI";
+    -fx-background-color: linear-gradient(to bottom right, #FBF8F2, #F1EBE0);
+}
+
+.header {
+    -fx-padding: 34 40 24 40;
+}
+
+.logo {
+    -fx-background-color: #B7791F;
+    -fx-background-radius: 14;
+    -fx-min-width: 46;
+    -fx-min-height: 46;
+    -fx-max-width: 46;
+    -fx-max-height: 46;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.title {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E3A5F;
+}
+
+.subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6B7280;
+}
+
+.content {
+    -fx-padding: 0 40 40 40;
+}
+
+.card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 20;
+    -fx-padding: 28;
+    -fx-effect: dropshadow(gaussian, rgba(30, 58, 95, 0.10), 26, 0.10, 0, 8);
+}
+
+.section-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6B7280;
+}
+
+.input-harga {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #D8D0C2;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 12 14 12 14;
+    -fx-font-size: 16px;
+    -fx-text-fill: #1F2937;
+    -fx-prompt-text-fill: #9CA3AF;
+}
+
+.input-harga:focused {
+    -fx-border-color: #1E3A5F;
+    -fx-border-width: 1.5;
+    -fx-effect: dropshadow(gaussian, rgba(30, 58, 95, 0.12), 8, 0.10, 0, 0);
+}
+
+.input-harga:error {
+    -fx-border-color: #DC2626;
+}
+
+.error-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #DC2626;
+}
+
+.chip {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E6DED0;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 11 10 11 10;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1F2937;
+    -fx-cursor: hand;
+}
+
+.chip:hover {
+    -fx-background-color: #F7F3EB;
+}
+
+.chip:selected {
+    -fx-background-color: #1E3A5F;
+    -fx-border-color: #1E3A5F;
+    -fx-text-fill: white;
+}
+
+.button-primary {
+    -fx-background-color: #1E3A5F;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 14 20 14 20;
+    -fx-cursor: hand;
+}
+
+.button-primary:hover {
+    -fx-background-color: #162C49;
+}
+
+.button-primary:pressed {
+    -fx-background-color: #0F1F33;
+}
+
+.result-card {
+    -fx-background-color: linear-gradient(to bottom right, #1E3A5F, #14263D);
+    -fx-background-radius: 20;
+    -fx-padding: 28;
+    -fx-effect: dropshadow(gaussian, rgba(30, 58, 95, 0.22), 28, 0.12, 0, 10);
+}
+
+.result-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #D6B36A;
+}
+
+.result-caption {
+    -fx-font-size: 12px;
+    -fx-text-fill: #AFC0D4;
+}
+
+.result-amount {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+.result-detail {
+    -fx-font-size: 12px;
+    -fx-text-fill: #C9D3E0;
+}
+
+.result-hemat {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #D6B36A;
+}
+
+.result-breakdown {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-background-radius: 14;
+    -fx-padding: 14 16 14 16;
+}
+
+.result-breakdown-title {
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #8FA3BD;
+}
+
+.result-row-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #C9D3E0;
+}
+
+.result-row-value {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+
+.result-divider {
+    -fx-background-color: rgba(255, 255, 255, 0.16);
+}
+
+.result-footer {
+    -fx-font-size: 11px;
+    -fx-text-fill: #8FA3BD;
+}
